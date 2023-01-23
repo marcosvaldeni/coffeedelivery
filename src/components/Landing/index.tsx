@@ -1,4 +1,4 @@
-import { Cart, InfoDiv, LandingContainer } from './styles';
+import { Box, Cafe, Cart, Clock, InfoDiv, LandingContainer } from './styles';
 import { Package, Timer, ShoppingCart, Coffee } from 'phosphor-react';
 
 import coffeeImage from './../../assets/coffee.png';
@@ -8,8 +8,7 @@ export function Landing() {
     <LandingContainer>
       <InfoDiv>
         <h1>Find the perfect coffee for any time of day</h1>
-        <p>With Coffee Delivery you get your coffee wherever you are, anytime.</p>
-
+        <h3>With Coffee Delivery you get your coffee wherever you are, anytime.</h3>
 
         <ul>
           <li>
@@ -19,22 +18,22 @@ export function Landing() {
             <p>Simple and secure purchase</p>
           </li>
           <li>
-            <span>
+            <Box>
               <Package size={24} weight="fill" />
-            </span>
+            </Box>
             <p>Packaging keeps the coffee intact</p>
           </li>
           <li>
-            <span>
+            <Clock>
               <Timer size={24} weight="fill" />
-            </span>
+            </Clock>
             <p>Fast and tracked delivery</p>
           </li>
           <li>
-            <span>
+            <Cafe>
               <Coffee size={24} weight="fill" />
-            </span>
-            <p>O café chega fresquinho até você</p>
+            </Cafe>
+            <p>Coffee arrives fresh to you</p>
           </li>
         </ul>
       </InfoDiv>

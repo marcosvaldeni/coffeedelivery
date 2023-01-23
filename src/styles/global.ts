@@ -51,6 +51,26 @@ export const GlobalStyle = createGlobalStyle`
 		color: ${props => props.theme['base-text']};
   }
 
+  h1, h2, h3 {
+    font-family: 'Baloo 2', sans-serif;
+    color: ${props => props.theme['base-subtitle']};
+    font-weight: 800;
+    line-height: 130%;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: ${props => props.theme['base-title']};
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+  }
+
   button {
     cursor: pointer;
   }
@@ -67,4 +87,12 @@ export const Main = styled.main`
 
     display: flex;
     flex-direction: column;
+
+    @media (min-width: 575px) {
+      padding: 0 20px;
+    }
+
+    @media (min-width: 1200px) {
+      padding: 0;
+    }
 `;
