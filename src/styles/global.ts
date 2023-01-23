@@ -38,7 +38,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background: ${pros => pros.theme.background};
-    background: url(${background}) no-repeat center 100px / cover;
+    background: url(${background});
+    background-repeat: no-repeat;
+    background-position: left top;
+    
     color: ${pros => pros.theme['base-text']}; 
 		-webkit-font-smoothing: antialiased;
   }

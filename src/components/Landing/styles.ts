@@ -57,14 +57,9 @@ export const InfoDiv = styled.div`
   }
 
   li + li {
-    margin-top: 1rem;
-  }
-
-  @media (min-width: 575px) {
-
+    margin-top: 1.3rem;
   }
 `;
-
 
 const SpanBase = styled.span`
   padding: 0.5rem;
