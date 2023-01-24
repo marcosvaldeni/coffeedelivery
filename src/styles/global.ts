@@ -1,7 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-import background from '../assets/background.svg';
-
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -37,11 +35,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${pros => pros.theme.background};
-    background: url(${background});
-    background-repeat: no-repeat;
-    background-position: left top;
-    
+    background: ${pros => pros.theme.background};   
     color: ${pros => pros.theme['base-text']}; 
 		-webkit-font-smoothing: antialiased;
   }
@@ -83,19 +77,19 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const Main = styled.main`
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 10px;
+// export const BaseMain = styled.div`
+//     max-width: 1120px;
+//     margin: 0 auto;
+//     padding: 0 10px;
 
-    display: flex;
-    flex-direction: column;
+//     display: flex;
+//     flex-direction: column;
 
-    @media (min-width: 575px) {
-      padding: 0 20px;
-    }
+//     @media (min-width: 575px) {
+//       padding: 0 20px;
+//     }
 
-    @media (min-width: 1200px) {
-      padding: 0;
-    }
-`;
+//     @media (min-width: 1200px) {
+//       padding: 0;
+//     }
+// `;

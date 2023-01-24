@@ -1,9 +1,11 @@
-import { FooterContainer } from './styles';
+import { FooterContainer, Main } from './styles';
 
 export function Footer() {
   return (
-    <FooterContainer>
-      <h1>Footer</h1>
-    </FooterContainer>
+    <Main>
+      <FooterContainer>
+        <h1>Footer</h1>
+      </FooterContainer>
+    </Main>
   );
 }

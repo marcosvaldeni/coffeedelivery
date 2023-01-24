@@ -1,41 +1,43 @@
 import { CoffeeCard } from "../CoffeCard";
-import { CardContainer, ListContainer } from "./styles";
+import { CardContainer, ListContainer, Main } from "./styles";
 
 export function CoffeeList() {
   return (
-    <ListContainer>
-      <h2>Out Coffees</h2>
+    <Main>
+      <ListContainer>
+        <h2>Out Coffees</h2>
 
-      <div>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
-        <CardContainer>
-          <CoffeeCard />
-        </CardContainer>
+        <div>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
+          <CardContainer>
+            <CoffeeCard />
+          </CardContainer>
 
-      </div>
-    </ListContainer>
+        </div>
+      </ListContainer>
+    </Main>
   );
 }

@@ -1,7 +1,17 @@
 import styled from 'styled-components';
 
+import background from '../../assets/background.svg';
+
+export const Main = styled.div`
+    background: url(${background});
+    background-repeat: no-repeat;
+    background-position: center center;
+`;
+
 export const LandingContainer = styled.section`
-  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 10px;
   padding: 6.5rem 0;
 
   display: flex;
@@ -76,7 +86,7 @@ export const Cart = styled(SpanBase)`
 `;
 
 export const Box = styled(SpanBase)`
-  background: ${props => props.theme['primary-900']};
+  background: ${props => props.theme['base-text']};
 `;
 
 export const Clock = styled(SpanBase)`
