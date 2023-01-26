@@ -7,7 +7,6 @@ export function DefaultLayout() {
     <>
       <Header />
       <Outlet />
-      <Footer />
     </>
   )
 }
