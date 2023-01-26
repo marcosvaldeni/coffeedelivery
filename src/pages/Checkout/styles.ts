@@ -9,12 +9,9 @@ export const Main = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* align-items: flex-start; */
-  /* justify-content: space-between; */
   gap: 2rem;
 
   > section {
-    /* width: 58%; */
 
     > h1 {
       font-size: 1.125rem;
@@ -28,7 +25,6 @@ export const Main = styled.form`
     justify-content: space-between;
 
     > section {
-      /* width: 58%; */
       width: 58%;
     }
   }
@@ -77,7 +73,6 @@ export const FieldsContainer = styled.div`
   grid-template-columns: repeat(12, 1fr);
 
   input:nth-child(1)  {
-    /* grid-column: span 4; */
     grid-column: span 12;
   }
 
@@ -86,27 +81,22 @@ export const FieldsContainer = styled.div`
   }
 
   input:nth-child(3)  {
-    /* grid-column: span 4; */
     grid-column: span 12;
   }
 
   input:nth-child(4)  {
-    /* grid-column: span 8; */
     grid-column: span 12;
   }
 
   input:nth-child(5)  {
-    /* grid-column: span 4; */
     grid-column: span 12;
   }
 
   input:nth-child(6)  {
-    /* grid-column: span 6; */
     grid-column: span 7;
   }
 
   input:nth-child(7)  {
-    /* grid-column: span 2; */
     grid-column: span 5;
   }
     
@@ -170,7 +160,6 @@ export const CheckBox = styled.div`
   flex: 1;
 
   label {
-    /* margin-right: 1rem; */
     padding: 0.8rem 0.2rem;
     background: ${props => props.theme['base-button']};
     cursor: pointer;
@@ -270,8 +259,6 @@ export const CoffeeTotalCard = styled.div`
 `;
 
 export const CoffeeTatalCardActions = styled.div`
-  /* margin-right: 8%; */
-
   svg {
     color: ${props => props.theme['secondary-500']};
     cursor: pointer;
