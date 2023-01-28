@@ -19,7 +19,7 @@ import {
   Total
 } from "./styles";
 
-import cafe from '../../assets/imgs/traditional_espresso.png';
+import cafe from '../../assets/imgs/traditional.png';
 
 export function Checkout() {
   return (

@@ -1,6 +1,6 @@
 import { Actions, CardContainer, CartActions, CartButton, CoffeeTag } from './styles';
 
-import traditionalEspresso from '../../assets/imgs/traditional_espresso.png';
+import traditionalEspresso from '../../assets/imgs/traditional.png';
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 
 export function CoffeeCard() {

@@ -6,12 +6,20 @@ export const Main = styled.div`
     background: url(${background});
     background-repeat: no-repeat;
     background-position: center center;
+    padding: 0 10px;
+
+    @media (min-width: 575px) {
+      padding: 0 20px;
+    }
+
+    @media (min-width: 1200px) {
+      padding: 0;
+    }
 `;
 
 export const LandingContainer = styled.section`
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 10px;
   padding: 6.5rem 0;
 
   display: flex;

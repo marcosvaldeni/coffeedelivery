@@ -24,7 +24,7 @@ export const ListContainer = styled.section`
   > div {
     display: grid;
     
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
     grid-template-rows: repeat(auto-fit, auto-fit);
   }
 
