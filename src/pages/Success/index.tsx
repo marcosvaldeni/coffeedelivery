@@ -1,55 +1,60 @@
-import { MapPin, Money, Timer } from "phosphor-react";
+import { CurrencyDollar, Info, MapPin, Money, Timer } from "phosphor-react";
+import { 
+  Container, 
+  IconCurrency, 
+  IconMap, 
+  IconTime, 
+  InfoContainer, 
+  InfoDiv, 
+  Main, 
+  SubTitle, 
+  Title 
+} from "./styles";
+
+import inllustration from '../../assets/illustration.svg';
 
 export function Success() {
   return (
-    <div>
-      <h1>Huh! confirmed order</h1>
-      <p>Now just wait for the coffee to come to you soon</p>
+    <Main>
+      <Title>Huh! confirmed order</Title>
+      <SubTitle>Now just wait for the coffee to come to you soon</SubTitle>
 
-      <div>
-        <div>
-          <div>
-            <div>
-              <MapPin />
-            </div>
+      <InfoContainer>
+        <Container>
+          <InfoDiv>
+            <IconMap>
+              <MapPin weight="fill" />
+            </IconMap>
             <div>
               <p>Delivery at Rua João Daniel Martinelli, 102</p>
               <p>Farrapos - Porto Alegre, RS</p>
             </div>
-          </div>
+          </InfoDiv>
 
-          <div>
-            <div>
-              <MapPin />
-            </div>
-            <div>
-              <p>Delivery at Rua João Daniel Martinelli, 102</p>
-              <p>Farrapos - Porto Alegre, RS</p>
-            </div>
-          </div>
-
-          <div>
-            <div>
-              <Timer />
-            </div>
+          <InfoDiv>
+            <IconTime>
+              <Timer weight="fill" />
+            </IconTime>
             <div>
               <p>Delivery forecast</p>
               <p>20 min - 30 min</p>
             </div>
-          </div>
+          </InfoDiv>
 
-          <div>
-            <div>
-              <Money />
-            </div>
+          <InfoDiv>
+            <IconCurrency>
+              <CurrencyDollar weight="fill" />
+            </IconCurrency>
             <div>
               <p>Payment on delivery</p>
               <p>Credit card</p>
             </div>
-          </div>
+          </InfoDiv>
 
-        </div>
-      </div>
-    </div>
+        </Container>
+      </InfoContainer>
+
+      <img src={inllustration} alt="" />
+    </Main>
   );
 }
