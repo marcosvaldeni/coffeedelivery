@@ -18,6 +18,28 @@ export const Main = styled.div`
   @media (min-width: 575px) {
     padding: 0 20px;
   }
+
+  @media (min-width: 992px) {
+    align-items: flex-start;
+
+    img {
+      width: 100%;
+      max-width: initial;
+      margin-top: 2rem;
+      min-width: 450px;
+    }
+  }
+
+`;
+
+export const MainContainer = styled.div`
+  @media (min-width: 992px) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
 `;
 
 export const Title = styled.h1`
@@ -39,6 +61,12 @@ export const InfoContainer = styled.div`
   padding: 1px;
   background: linear-gradient(290.03deg, #A480EF 0%, #DCB959 100%);
   border-radius: 6px 36px;
+
+  @media (min-width: 992px) {
+    width: 100%;
+    max-width: initial;
+    min-width: 26rem;
+  }
 `;
 
 export const Container = styled.div`
