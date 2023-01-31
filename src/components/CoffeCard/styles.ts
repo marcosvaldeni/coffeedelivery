@@ -21,7 +21,7 @@ export const CardContainer = styled.div`
   }
 
   > p {
-    height: 5rem;
+    height: 5.5rem;
     margin-top: 0.5rem;
     color: ${props => props.theme['base-label']};
     font-size: 0.875;
@@ -103,22 +103,30 @@ export const CartActions = styled.div`
   align-items: center;
   justify-content: center;
   gap: 12px;
+`;
+
+export const ActionButton = styled.button`
+  border: none;
+  background: ${props => props.theme['base-button']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   > svg {
     color: ${props => props.theme['secondary-500']};
-    cursor: pointer;
-
-    &:hover {
-      color: ${props => props.theme['secondary-900']};
-    }
   }
-`;
 
-export const CartButton = styled.div`
+  &:hover {
+    color: ${props => props.theme['secondary-900']};
+  }
+  `;
+
+export const CartButton = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   background: ${props => props.theme['secondary-900']};
   border-radius: 8px;
+  border: none;
   cursor: pointer;
   transition: all ;
 

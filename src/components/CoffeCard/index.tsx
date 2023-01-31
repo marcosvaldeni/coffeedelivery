@@ -1,7 +1,7 @@
-import { Actions, CardContainer, CartActions, CartButton, CoffeeTag, TagContainer } from './styles';
+import { ActionButton, Actions, CardContainer, CartActions, CartButton, CoffeeTag, TagContainer } from './styles';
 
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 interface CoffeeCardProps {
   id: string;
@@ -21,6 +21,12 @@ export function CoffeeCard({ name, description, img, tag, id, addProduct}: Coffe
 
   function handleReduceAmount() {
     amount > 1 ? setAmount(amount - 1) : null;
+  }
+
+  function handleAddCoffee(e: FormEvent) {
+    e.preventDefault();
+    addProduct(id, amount);
+    setAmount(1);
   }
 
   return (
@@ -45,12 +51,16 @@ export function CoffeeCard({ name, description, img, tag, id, addProduct}: Coffe
 
         <div>
           <CartActions>
-            <Plus size={22} onClick={handleAddAmount} />
+            <ActionButton>
+              <Plus size={22} onClick={handleAddAmount} />
+            </ActionButton>
             <span>{amount}</span>
-            <Minus size={22} onClick={handleReduceAmount} />
+            <ActionButton>
+              <Minus size={22} onClick={handleReduceAmount} />
+            </ActionButton>
           </CartActions>
-          <CartButton>
-            <ShoppingCart onClick={() =>{ addProduct(id, amount) }} size={22} weight="fill" />
+          <CartButton type="submit">
+            <ShoppingCart onClick={handleAddCoffee} size={22} weight="fill" />
           </CartButton>
         </div>
       </Actions>

@@ -2,8 +2,13 @@ import { CartLink, HeaderContainer, LocatioLink, Main } from './styles';
 import { MapPin, ShoppingCart } from 'phosphor-react';
 
 import logo from '../../assets/logo.svg';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/CartContext';
 
 export function Header() {
+  const { coffeesList } = useContext(CartContext);
+  
+
   return (
     <Main >
       <HeaderContainer>
@@ -14,7 +19,7 @@ export function Header() {
             <MapPin size={24} weight="fill" />
             <span>Porto Alegre, RS</span>
           </LocatioLink>
-          <CartLink to="/checkout">
+          <CartLink amount={coffeesList.reduce((acc, n) => acc + n.amount, 0)} to="/checkout">
             <ShoppingCart size={24} weight="fill" />
           </CartLink>
         </nav>

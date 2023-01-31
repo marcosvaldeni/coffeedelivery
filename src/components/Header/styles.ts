@@ -1,5 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
+
+interface CartLinkProps {
+  amount: number;
+}
 
 export const Main = styled.div`
     max-width: 1120px;
@@ -46,7 +50,31 @@ export const LocatioLink = styled(baseSpan)`
   background: ${props => props.theme['secondary-100']};
 `;
 
-export const CartLink = styled(baseSpan)`
+export const CartLink = styled(baseSpan)<CartLinkProps>`
   background: ${props => props.theme['primary-100']};
   color: ${props => props.theme['primary-900']};
+  position: relative;
+
+  ${props => 
+    props.amount &&
+    css`
+    &::after {
+      content: '${props.amount}';
+      height: 1.30rem;
+      width: 1.30rem;
+      line-height: 0%;
+      background: ${props => props.theme['primary-900']};
+      color: ${props => props.theme.white};
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 50%;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    `}
 `;

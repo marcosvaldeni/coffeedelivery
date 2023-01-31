@@ -6,6 +6,7 @@ interface CartProviderProps {
 }
 
 interface CartContextData {
+  coffeesList: ICoffee[];
   addProduct: (id: string, amount: number) => void;
   removeProduct: (id: string) => void;
 }
@@ -52,7 +53,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
 
   return (
     <CartContext.Provider
-      value={{addProduct, removeProduct}}
+      value={{addProduct, removeProduct, coffeesList}}
     >
       {children}
     </CartContext.Provider>
