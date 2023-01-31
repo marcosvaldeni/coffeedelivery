@@ -1,4 +1,4 @@
-import { Actions, CardContainer, CartActions, CartButton, CoffeeTag } from './styles';
+import { Actions, CardContainer, CartActions, CartButton, CoffeeTag, TagContainer } from './styles';
 
 import traditionalEspresso from '../../assets/imgs/traditional.png';
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
@@ -9,8 +9,14 @@ export function CoffeeCard({ name, description, img, tag}: ICoffee) {
     <CardContainer>
       <img src={`/src/assets/imgs/${img}.png`} alt="Upper view of a traditional Espresso" />
 
-
-          <CoffeeTag>{tag[0]}</CoffeeTag>
+      <TagContainer>
+        {tag.map(t => {
+          return (
+            <CoffeeTag>{t}</CoffeeTag>
+          )
+        })}
+          
+      </TagContainer>
 
 
       <h3>{name}</h3>

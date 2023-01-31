@@ -21,6 +21,7 @@ export const CardContainer = styled.div`
   }
 
   > p {
+    height: 5rem;
     margin-top: 0.5rem;
     color: ${props => props.theme['base-label']};
     font-size: 0.875;
@@ -36,9 +37,15 @@ export const CardContainer = styled.div`
   }
 `;
 
+export const TagContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+`;
+
 export const CoffeeTag = styled.span`
   margin-top: 0.75rem;
-  padding: 2px 8px;
+  padding: 1px 8px;
   border-radius: 100px;
   background: ${props => props.theme['primary-100']};
   font-size: 0.625rem;
@@ -51,7 +58,7 @@ export const CoffeeTag = styled.span`
 
 export const Actions = styled.div`
   width: 100%;
-  margin-top: 2rem;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
