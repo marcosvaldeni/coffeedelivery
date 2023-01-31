@@ -1,11 +1,12 @@
+import { useContext } from "react";
 import { CoffeeCard } from "../CoffeCard";
 import { CardContainer, ListContainer, Main } from "./styles";
 
 import { coffees } from '../../service/db.json';
-import { ICoffee } from "../../service/Coffee";
+import { CartContext } from "../../contexts/CartContext";
 
 export function CoffeeList() {
-  const listOfCoffees: ICoffee[] = coffees;
+const { addProduct } = useContext(CartContext);
 
   return (
     <Main>
@@ -13,16 +14,16 @@ export function CoffeeList() {
         <h2>Out Coffees</h2>
 
         <div>
-          {listOfCoffees.map(coffee => {
+          {coffees.map(coffee => {
             return (
-              <CardContainer>
+              <CardContainer key={coffee.id}>
                 <CoffeeCard 
-                  key={coffee.id} 
                   name={coffee.name} 
                   description={coffee.description}
                   tag={coffee.tag}
                   img={coffee.img}
-                  id={coffee.id}  
+                  id={coffee.id}
+                  addProduct={addProduct}
                 />
               </CardContainer>
             )

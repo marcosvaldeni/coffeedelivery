@@ -1,71 +1,60 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-
-export interface Coffee {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  amount: number;
-}
+import { ICoffee } from '../service/Coffee';
 
 interface CartProviderProps {
   children: ReactNode;
 }
 
-interface UpdateProductAmount {
-  productId: number;
-  amount: number;
-}
-
 interface CartContextData {
-  cart: Coffee[];
-  addProduct: (productId: number) => Promise<void>;
-  removeProduct: (productId: number) => void;
-  updateProductAmount: ({ productId, amount }: UpdateProductAmount) => void;
+  addProduct: (id: string, amount: number) => void;
+  removeProduct: (id: string) => void;
 }
 
-const CartContext = createContext<CartContextData>({} as CartContextData);
+export const CartContext = createContext<CartContextData>({} as CartContextData);
 
-export function CartProvider({ children }: CartProviderProps) {
-  const [cart, setCart] = useState<Coffee[]>(() => {
-    const storagedCart = localStorage.getItem("@RocketShoes:cart");
+export function CartContextProvider({ children }: CartProviderProps) {
+  const [coffeesList, setCoffeesList] = useState<ICoffee[]>(() => {
 
-    if (storagedCart) {      
-      return JSON.parse(storagedCart);
+    const storedStateAsJSON = localStorage.getItem(
+      '@coffeedelivery:cart-state-1.0.0',
+    );
+
+    if (storedStateAsJSON) {
+      return JSON.parse(storedStateAsJSON);
     }
 
     return [];
   });
-
-  const addProduct = async (productId: number) => {
-
-
-
-  };
-
-  const removeProduct = (productId: number) => {
-
-
-  };
-
-  const updateProductAmount = async ({
-    productId,
-    amount,
-  }: UpdateProductAmount) => {
   
+  function addProduct(id: string, amount: number) {
+    
+    const coffeeAlreadOnTheList = coffeesList.find((coffee) => {
+      return coffee.id === id;
+    });
+  
+    if (coffeeAlreadOnTheList) {
+      setCoffeesList(
+        coffeesList.map(coffee => {
+          return coffee.id === id ? { id, amount: coffee.amount + amount } : coffee;
+        })
+      )
+      
+    } else {
+      
+      console.log([...coffeesList, { id, amount }]);
+      setCoffeesList([...coffeesList, { id, amount }]);
+    }
+  }
+
+  const removeProduct = (id: string) => {
+
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, updateProductAmount }}
+      value={{addProduct, removeProduct}}
     >
       {children}
     </CartContext.Provider>
   );
-}
-
-export function useCart(): CartContextData {
-  const context = useContext(CartContext);
-
-  return context;
 }
