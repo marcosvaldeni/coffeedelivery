@@ -34,6 +34,26 @@ export const Main = styled.form`
   }
 `;
 
+export const Empty = styled.div`
+  width: 100%;
+  height: 32rem;
+  padding: 2.5rem;
+  border-radius: 6px;
+  background: ${props => props.theme['base-card']};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: ${props => props.theme['base-label']};
+
+  h1 {
+    font-size: 3rem;
+    color: ${props => props.theme['base-label']};
+
+  }
+`;
+
 const HeaderBase = styled.div`
   display: flex;
 
@@ -50,7 +70,7 @@ export const AddressHeaer = styled(HeaderBase)`
 `;
 
 export const Container = styled.div<Err>`
-  max-width: 575px;//
+  max-width: 575px;
   margin-top: 1rem;
   padding: 2.5rem;
   border: 3px solid ${props => props.err ? 

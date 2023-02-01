@@ -4,6 +4,7 @@ import { MapPin, ShoppingCart } from 'phosphor-react';
 import logo from '../../assets/logo.svg';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   const { coffeesList } = useContext(CartContext);
@@ -11,7 +12,10 @@ export function Header() {
   return (
     <Main >
       <HeaderContainer>
-        <img src={logo} alt="Logo Coffee Delivery" />
+
+        <Link to="/">
+          <img src={logo} alt="Logo Coffee Delivery" />
+        </Link>
 
         <nav>
           <LocatioLink to="/">

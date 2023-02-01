@@ -11,7 +11,7 @@ const { addProduct } = useContext(CartContext);
   return (
     <Main>
       <ListContainer>
-        <h2>Out Coffees</h2>
+        <h2>Nossos cafés</h2>
 
         <div>
           {coffees.map(coffee => {

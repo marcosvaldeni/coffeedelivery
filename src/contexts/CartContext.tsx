@@ -9,11 +9,24 @@ interface CartContextData {
   coffeesList: ICoffee[];
   addProduct: (id: string, amount: number) => void;
   removeProduct: (id: string) => void;
+  clearProducts: () => void;
+}
+
+interface Address {
+
+}
+
+interface Purchase {
+  id: string;
+  coffeesList: ICoffee[];
+  payment: string;
+  address: Address;
 }
 
 export const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartContextProvider({ children }: CartProviderProps) {
+  const [purchase, setPurchase] = useState<Purchase>();
   const [coffeesList, setCoffeesList] = useState<ICoffee[]>(() => {
 
     const storedStateAsJSON = localStorage.getItem(
@@ -42,18 +55,23 @@ export function CartContextProvider({ children }: CartProviderProps) {
       
     } else {
       
-      console.log([...coffeesList, { id, amount }]);
       setCoffeesList([...coffeesList, { id, amount }]);
     }
   }
 
   const removeProduct = (id: string) => {
+    setCoffeesList(
+      coffeesList.filter(coffee => coffee.id !== id)
+    );
+  };
 
+  const clearProducts = () => {
+    setCoffeesList([]);
   };
 
   return (
     <CartContext.Provider
-      value={{addProduct, removeProduct, coffeesList}}
+      value={{addProduct, removeProduct, clearProducts, coffeesList}}
     >
       {children}
     </CartContext.Provider>

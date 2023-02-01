@@ -17,7 +17,7 @@ export function Total() {
 
   return (
     <TotalContainer>
-      <h3>Selected coffees</h3>
+      <h3>Cafés selecionados</h3>
 
       <div>
         {coffeesList && 
