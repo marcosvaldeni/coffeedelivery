@@ -49,10 +49,13 @@ export const AddressHeaer = styled(HeaderBase)`
   }
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<Err>`
   max-width: 575px;//
   margin-top: 1rem;
   padding: 2.5rem;
+  border: 3px solid ${props => props.err ? 
+    props.theme['red-500']  : props.theme['base-card']
+  };
   border-radius: 6px;
   background: ${props => props.theme['base-card']};
 
@@ -191,12 +194,12 @@ export const CheckBox = styled.div`
     border: 1px solid ${props => props.theme['base-button']};
   }
 
-  input[type='checkbox'] {
+  input[type='radio'] {
     cursor: pointer;
     display: none;
   }
 
-  input[type='checkbox']:checked + label {
+  input[type='radio']:checked + label {
     border: 1px solid ${props => props.theme['secondary-500']};
     background: ${props => props.theme['secondary-100']};
   }
@@ -219,130 +222,4 @@ export const CheckBox = styled.div`
 
 `;
 
-export const Total = styled.aside`
-  width: 100%;
-  max-width: 475px;
-  margin-bottom: 9rem;
-  flex: 1;
 
-  > div {
-    width: 100%;
-    margin-top: 1rem;
-    padding: 1.5rem;
-    background: ${props => props.theme['base-card']};
-    border-radius: 6px 36px;
-  }
-
-  @media (min-width: 575px) {
-    > div {
-      padding: 2.5rem;
-    }
-  }
-
-  @media (min-width: 992px) {
-    width: initial;
-    max-width: initial;
-  }
-`;
-
-export const CoffeeTotalCard = styled.div`
-  padding-bottom: 2rem;
-  border-bottom: 1px solid ${props => props.theme['base-button']};
-  display: flex;
-  justify-content: space-between;
-  gap: 1ren;
-
-  > img {
-    margin-left: -1rem;
-    height: 4rem;
-  }
-
-  > p {
-    font-weight: 700;
-  }
-
-  & + & {
-    padding-top: 1.5rem;
-  } 
-`;
-
-export const CoffeeTatalCardActions = styled.div`
-  svg {
-    color: ${props => props.theme['secondary-500']};
-    cursor: pointer;
-  }
-  
-  svg:hover {
-    color: ${props => props.theme['secondary-900']};
-  }
-
-  > div {
-    margin-top: 0.875rem;
-    display: flex;
-    gap: 0.25rem;
-
-    > div {
-      padding: 0.5rem;
-      background: ${props => props.theme['base-button']};
-      border-radius: 6px;
-      line-height: 70%;
-
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    > span {
-      padding: 0 0.5rem;
-      border-radius: 6px;
-      background: ${props => props.theme['base-button']};
-      font-size: 0.75rem;
-      line-height: 70%;
-      cursor: pointer;
-
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    > span:hover {
-      > svg {
-        color: ${props => props.theme['secondary-900']};
-      }
-    }
-  }
-
-  @media (min-width: 992px) {
-    margin-right: 8%;
-  }
-`;
-
-export const PBaseContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  margin-top: 0.75rem;
-`;
-
-export const PContainer = styled(PBaseContainer)`
-  margin-top: 1.5rem;
-`;
-
-export const PTotalContainer = styled(PBaseContainer)`
-    font-size: 1rem;
-    font-weight: 700;
-`;
-
-export const Button = styled.button`
-  width: 100%;
-  margin-top: 1.5rem;
-  padding: 0.75rem;
-  border-radius: 6px;
-  border: none;
-  background: ${props => props.theme['primary-500']};
-  color: ${props => props.theme.white};
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  font-weight: 700;
-`;

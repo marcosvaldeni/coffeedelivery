@@ -5,34 +5,24 @@ import {
    CreditCard, 
    CurrencyDollar, 
    MapPinLine, 
-   Minus, 
    Money, 
-   Plus, 
-   Trash } from "phosphor-react";
+  } from "phosphor-react";
 import { 
   AddressHeaer, 
-  Button, 
   CheckBox, 
   CheckBoxContainer, 
-  CoffeeTatalCardActions, 
-  CoffeeTotalCard, 
   Container, 
   FieldInput, 
   FieldsContainer, 
   Main, 
   PaymentHeaer, 
-  PBaseContainer, 
-  PContainer, 
-  PTotalContainer, 
   Subtitle, 
   Title, 
-  Total
 } from "./styles";
 
-import cafe from '../../assets/imgs/traditional.png';
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { api } from '../../service/api';
+import { Total } from '../../components/Total';
 
 const formValidationSchema = zod.object({
   street: zod.string().min(5, 'Informe o logradouro'),
@@ -40,7 +30,8 @@ const formValidationSchema = zod.object({
   district: zod.string().min(2, 'Informe o Bairro'),
   uf: zod.string().min(2, 'Informe o Estado'),
   cep: zod.string().min(9, 'Informe o Estado'),
-  number: zod.string().min(2, 'Informe o Numero'),
+  number: zod.string().min(1, 'Informe o Numero'),
+  pay: zod.string(),
 });
 
 export function Checkout() {
@@ -49,7 +40,7 @@ export function Checkout() {
   });
 
   function handleFormSubmit(data: any) {
-
+    console.log(data);
   }
   
   async function handleCepOnBlur() {
@@ -58,7 +49,6 @@ export function Checkout() {
     if (cep.length >= 8) {
       const formatedCep = `${cep.replace(/[^0-9]/g, '').slice(0, 5)}-${cep.replace(/[^0-9]/g, '').slice(-3)}`;
       console.log(formatedCep);
-      
 
       const { address, city, district, state } = await (await api.get(`${formatedCep}.json`)).data;
 
@@ -102,7 +92,7 @@ export function Checkout() {
 
         </Container>
 
-        <Container>
+        <Container err={!!errors?.pay}>
           <PaymentHeaer>
             <CurrencyDollar size={24} />
               <div>
@@ -112,21 +102,21 @@ export function Checkout() {
           </PaymentHeaer>
           <CheckBoxContainer> 
             <CheckBox>
-                <input type="checkbox" id="credit" />
+                <input {...register('pay')} type="radio" id="credit" value="credit" />
               <label htmlFor="credit">
                 <CreditCard size={20} />
                 Credit card
               </label>
             </CheckBox>
             <CheckBox>
-              <input type="checkbox" id="debit" />
+              <input {...register('pay')} type="radio" id="debit" value="debit" />
               <label htmlFor="debit">
                 <Bank size={20} />
                 Debit card
               </label>
             </CheckBox>
             <CheckBox>
-            <input type="checkbox" id="cash" />
+            <input {...register('pay')} type="radio" id="cash" value="cash" />
               <label htmlFor="cash">
                 <Money size={20} />
                 Cash
@@ -136,67 +126,9 @@ export function Checkout() {
 
         </Container>
       </section>
+      
+      <Total />
 
-      <Total>
-        <h3>Selected coffees</h3>
-
-        <div>
-          <CoffeeTotalCard>
-            <img src={cafe} alt="" />
-            <CoffeeTatalCardActions>
-              <p>Expresso Tradicional</p>
-              <div>
-                <div>
-                  <Minus size={20} />
-                  <span>1</span>
-                  <Plus size={20} />
-                </div>
-
-                <span>
-                  <Trash size={20} />
-                  REMOVER
-                </span>
-              </div>
-            </CoffeeTatalCardActions>
-            <p>R$ 9,90</p>
-          </CoffeeTotalCard>
-
-          <CoffeeTotalCard>
-            <img src={cafe} alt="" />
-            <CoffeeTatalCardActions>
-              <p>Expresso Tradicional</p>
-              <div>
-                <div>
-                  <Minus size={20} />
-                  <span>1</span>
-                  <Plus size={20} />
-                </div>
-
-                <span>
-                  <Trash size={20} />
-                  REMOVER
-                </span>
-              </div>
-            </CoffeeTatalCardActions>
-            <p>R$ 9,90</p>
-          </CoffeeTotalCard>
-
-          <PContainer>
-            <p>Total de itens:</p>
-            <p>R$ 29,70</p>
-          </PContainer>
-          <PBaseContainer>
-            <p>Entrega</p>
-            <p>R$ 3,50</p>
-          </PBaseContainer>
-          <PTotalContainer>
-            <p>Total</p>
-            <p>R$ 33,20</p>
-          </PTotalContainer>
-
-          <Button type="submit">Confirm order</Button>
-        </div>
-      </Total>
     </Main>
   );
 }

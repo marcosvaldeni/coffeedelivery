@@ -8,7 +8,6 @@ import { CartContext } from '../../contexts/CartContext';
 export function Header() {
   const { coffeesList } = useContext(CartContext);
   
-
   return (
     <Main >
       <HeaderContainer>
