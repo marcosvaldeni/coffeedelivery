@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface Err {
+  err?: boolean;
+}
 
 export const Main = styled.form`
   max-width: 1120px;
@@ -127,11 +131,15 @@ export const FieldsContainer = styled.div`
   }
 `;
 
-export const FieldInput = styled.input`
+export const FieldInput = styled.input<Err>`
   padding: 0.75rem;
-  border: 1px solid ${props => props.theme['base-button']};
+  border: 1px solid ${props => props.err ? 
+    props.theme['red-500']  : props.theme['base-button']
+  };
   border-radius: 4px;
-  background: ${props => props.theme['base-input']};
+  background: ${props => props.err ? 
+    props.theme['red-100'] : props.theme['base-button']
+  }
 `;
 
 export const PaymentHeaer = styled(HeaderBase)`
@@ -309,7 +317,7 @@ export const CoffeeTatalCardActions = styled.div`
   }
 `;
 
-export const PBase = styled.p`
+export const PBaseContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -317,11 +325,11 @@ export const PBase = styled.p`
   margin-top: 0.75rem;
 `;
 
-export const P = styled(PBase)`
+export const PContainer = styled(PBaseContainer)`
   margin-top: 1.5rem;
 `;
 
-export const PTotal = styled(PBase)`
+export const PTotalContainer = styled(PBaseContainer)`
     font-size: 1rem;
     font-weight: 700;
 `;

@@ -1,4 +1,14 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, PlusMinus, Trash } from "phosphor-react";
+import { zodResolver } from '@hookform/resolvers/zod';
+import zod from 'zod';
+import {
+   Bank,
+   CreditCard, 
+   CurrencyDollar, 
+   MapPinLine, 
+   Minus, 
+   Money, 
+   Plus, 
+   Trash } from "phosphor-react";
 import { 
   AddressHeaer, 
   Button, 
@@ -10,20 +20,57 @@ import {
   FieldInput, 
   FieldsContainer, 
   Main, 
-  P, 
   PaymentHeaer, 
-  PBase, 
-  PTotal, 
+  PBaseContainer, 
+  PContainer, 
+  PTotalContainer, 
   Subtitle, 
   Title, 
   Total
 } from "./styles";
 
 import cafe from '../../assets/imgs/traditional.png';
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { api } from '../../service/api';
+
+const formValidationSchema = zod.object({
+  street: zod.string().min(5, 'Informe o logradouro'),
+  city: zod.string().min(2, 'Informe Cidade'),
+  district: zod.string().min(2, 'Informe o Bairro'),
+  uf: zod.string().min(2, 'Informe o Estado'),
+  cep: zod.string().min(9, 'Informe o Estado'),
+  number: zod.string().min(2, 'Informe o Numero'),
+});
 
 export function Checkout() {
+  const { register, handleSubmit, watch, setValue, formState: {errors} } = useForm({
+    resolver: zodResolver(formValidationSchema)
+  });
+
+  function handleFormSubmit(data: any) {
+
+  }
+  
+  async function handleCepOnBlur() {
+    const cep = watch('cep');
+
+    if (cep.length >= 8) {
+      const formatedCep = `${cep.replace(/[^0-9]/g, '').slice(0, 5)}-${cep.replace(/[^0-9]/g, '').slice(-3)}`;
+      console.log(formatedCep);
+      
+
+      const { address, city, district, state } = await (await api.get(`${formatedCep}.json`)).data;
+
+      setValue('street', address);
+      setValue('uf', state);
+      setValue('district', district);
+      setValue('city', city);
+    }
+  }
+
   return (
-    <Main>
+    <Main onSubmit={handleSubmit(handleFormSubmit)}>
       <section>
         <h1>Complete your order</h1>
         <Container>
@@ -37,13 +84,20 @@ export function Checkout() {
           </AddressHeaer>
 
           <FieldsContainer>
-            <FieldInput type="text" placeholder="CEP" />
-            <FieldInput type="text" placeholder="Rua" />
-            <FieldInput type="text" placeholder="Number" />
-            <FieldInput type="text" placeholder="Complement" />
-            <FieldInput type="text" placeholder="Bairro" />
-            <FieldInput type="text" placeholder="Cidade" />
-            <FieldInput type="text" placeholder="UF" />
+            <FieldInput id="cep"
+            err={!!errors?.cep}
+            {...register('cep', {
+              onBlur: () => handleCepOnBlur()
+            })} 
+            type="text" 
+            placeholder="CEP" 
+          />
+            <FieldInput err={!!errors?.street} id="street" {...register('street')} type="text" placeholder="Rua" />
+            <FieldInput err={!!errors?.number} id="number" {...register('number')} type="text" placeholder="Numero" />
+            <FieldInput id="complement" {...register('complement')} type="text" placeholder="Complemento" />
+            <FieldInput err={!!errors?.district} id="district" {...register('district')} type="text" placeholder="Bairro" />
+            <FieldInput err={!!errors?.city} id="city" {...register('city')} type="text" placeholder="Cidade" />
+            <FieldInput err={!!errors?.uf} id="uf" {...register('uf')} type="text" placeholder="UF" />
           </FieldsContainer>
 
         </Container>
@@ -127,20 +181,20 @@ export function Checkout() {
             <p>R$ 9,90</p>
           </CoffeeTotalCard>
 
-          <P>
+          <PContainer>
             <p>Total de itens:</p>
             <p>R$ 29,70</p>
-          </P>
-          <PBase>
+          </PContainer>
+          <PBaseContainer>
             <p>Entrega</p>
             <p>R$ 3,50</p>
-          </PBase>
-          <PTotal>
+          </PBaseContainer>
+          <PTotalContainer>
             <p>Total</p>
             <p>R$ 33,20</p>
-          </PTotal>
+          </PTotalContainer>
 
-          <Button>Confirm order</Button>
+          <Button type="submit">Confirm order</Button>
         </div>
       </Total>
     </Main>
