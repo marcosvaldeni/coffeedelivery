@@ -13,12 +13,24 @@ import {
 } from "./styles";
 
 import inllustration from '../../assets/illustration.svg';
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 
 export function Success() {
+  const { purchase } = useContext(CartContext);
+
+  const navigate = useNavigate()
+
+  if(purchase) {
+    navigate('/checkout');
+    console.log('test');
+  }
+
   return (
     <Main>
-      <Title>Huh! confirmed order</Title>
-      <SubTitle>Now just wait for the coffee to come to you soon</SubTitle>
+      <Title>Uhu! Pedido confirmado</Title>
+      <SubTitle>Agora é só aguardar que logo o café chegará até você</SubTitle>
 
       <MainContainer>
 
@@ -29,8 +41,8 @@ export function Success() {
                 <MapPin weight="fill" />
               </IconMap>
               <div>
-                <p>Delivery at Rua João Daniel Martinelli, 102</p>
-                <p>Farrapos - Porto Alegre, RS</p>
+                <p>Entrega em <strong>{purchase?.address.street}, {purchase?.address.number}</strong></p>
+                <p>{purchase?.address.district} - {purchase?.address.city}, {purchase?.address.uf}</p>
               </div>
             </InfoDiv>
 
@@ -39,8 +51,8 @@ export function Success() {
                 <Timer weight="fill" />
               </IconTime>
               <div>
-                <p>Delivery forecast</p>
-                <p>20 min - 30 min</p>
+                <p>Previsão de entrega</p>
+                <p><strong>20 min - 30 min</strong></p>
               </div>
             </InfoDiv>
 
@@ -49,8 +61,8 @@ export function Success() {
                 <CurrencyDollar weight="fill" />
               </IconCurrency>
               <div>
-                <p>Payment on delivery</p>
-                <p>Credit card</p>
+                <p>Pagamento na entrega</p>
+                <p><strong>{purchase?.payment}</strong></p>
               </div>
             </InfoDiv>
 

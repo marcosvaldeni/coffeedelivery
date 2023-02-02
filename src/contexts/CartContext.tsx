@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState } from 'react';
-import { ICoffee } from '../service/Coffee';
+import { ICoffee } from '../models/Coffee';
+import { IPurchase } from '../models/Purchase';
 
 interface CartProviderProps {
   children: ReactNode;
@@ -7,26 +8,17 @@ interface CartProviderProps {
 
 interface CartContextData {
   coffeesList: ICoffee[];
+  purchase: IPurchase | undefined;
   addProduct: (id: string, amount: number) => void;
   removeProduct: (id: string) => void;
   clearProducts: () => void;
-}
-
-interface Address {
-
-}
-
-interface Purchase {
-  id: string;
-  coffeesList: ICoffee[];
-  payment: string;
-  address: Address;
+  addNewPurchase: (purchase: IPurchase) => void;
 }
 
 export const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartContextProvider({ children }: CartProviderProps) {
-  const [purchase, setPurchase] = useState<Purchase>();
+  const [purchase, setPurchase] = useState<IPurchase>();
   const [coffeesList, setCoffeesList] = useState<ICoffee[]>(() => {
 
     const storedStateAsJSON = localStorage.getItem(
@@ -39,6 +31,10 @@ export function CartContextProvider({ children }: CartProviderProps) {
 
     return [];
   });
+
+  function addNewPurchase(purchase: IPurchase) {
+    setPurchase(purchase);
+  }
   
   function addProduct(id: string, amount: number) {
     
@@ -71,7 +67,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
 
   return (
     <CartContext.Provider
-      value={{addProduct, removeProduct, clearProducts, coffeesList}}
+      value={{addNewPurchase, addProduct, removeProduct, clearProducts, coffeesList, purchase}}
     >
       {children}
     </CartContext.Provider>
