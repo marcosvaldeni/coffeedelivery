@@ -47,7 +47,7 @@ const PurchaseFormDataSchema = zod.object({
   city: zod.string().min(2, 'Informe Cidade'),
   district: zod.string().min(2, 'Informe o Bairro'),
   uf: zod.string().min(2, 'Informe o Estado'),
-  cep: zod.string().regex(/^\d+$/).min(5, 'Informe o Estado'),
+  cep: zod.string().min(5, 'Informe o Estado'),
   number: zod.string().min(1, 'Informe o Numero'),
   pay: zod.string(),
   complement: zod.string(),
