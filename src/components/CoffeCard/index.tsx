@@ -31,7 +31,7 @@ export function CoffeeCard({ name, description, img, tag, id, addProduct}: Coffe
 
   return (
     <CardContainer>
-      <img src={`/src/assets/imgs/${img}.png`} alt="Upper view of a traditional Espresso" />
+      <img src={`/imgs/${img}.png`} alt="Upper view of a traditional Espresso" />
 
       <TagContainer>
         {tag.map(t => {
