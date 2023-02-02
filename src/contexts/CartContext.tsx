@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { ICoffee } from '../models/Coffee';
 import { IPurchase } from '../models/Purchase';
 
@@ -31,6 +31,12 @@ export function CartContextProvider({ children }: CartProviderProps) {
 
     return [];
   });
+
+  useEffect(() => {
+    const purchaseJSON = JSON.stringify(coffeesList)
+  
+    localStorage.setItem('@coffeedelivery:cart-state-1.0.0', purchaseJSON)
+  }, [coffeesList])
 
   function addNewPurchase(purchase: IPurchase) {
     setPurchase(purchase);
