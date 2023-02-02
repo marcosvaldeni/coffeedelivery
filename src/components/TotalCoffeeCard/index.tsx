@@ -19,7 +19,7 @@ export function TotalCoffeeCard({ id, name, img, amount }: TotalCoffeeCardProps)
 
   return (
     <CoffeeTotalCard>
-      <img src={`/src/assets/imgs/${img}.png`} alt={`Upper view of a ${name}`}/>
+      <img src={`/assets/imgs/${img}.png`} alt={`Upper view of a ${name}`}/>
       <CoffeeTatalCardActions>
         <p>{name}</p>
         <div>
