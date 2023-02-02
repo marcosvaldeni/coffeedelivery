@@ -23,8 +23,7 @@ export function Success() {
   const navigate = useNavigate()
 
   if(purchase) {
-    navigate('/checkout');
-    console.log('test');
+    navigate('/');
   }
 
   return (
