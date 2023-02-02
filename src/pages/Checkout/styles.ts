@@ -191,11 +191,13 @@ export const CheckBox = styled.div`
   flex: 1;
 
   label {
-    padding: 0.8rem 0.2rem;
+    padding: 0.8rem 0.5rem;
     background: ${props => props.theme['base-button']};
     cursor: pointer;
     border-radius: 4px;
     border: 1px solid ${props => props.theme['base-button']};
+    text-transform: uppercase;
+    font-size: 0.8rem;
 
     display: flex;
     flex: 1;

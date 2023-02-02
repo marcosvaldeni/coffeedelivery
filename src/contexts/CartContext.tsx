@@ -13,6 +13,8 @@ interface CartContextData {
   removeProduct: (id: string) => void;
   clearProducts: () => void;
   addNewPurchase: (purchase: IPurchase) => void;
+  increaseOneProduct: (id: string, amount: number) => void;
+  decreaseOneProduct: (id: string) => void;
 }
 
 export const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -41,6 +43,22 @@ export function CartContextProvider({ children }: CartProviderProps) {
   function addNewPurchase(purchase: IPurchase) {
     setPurchase(purchase);
   }
+
+  function decreaseOneProduct(id: string) {
+    setCoffeesList(
+      coffeesList.map(coffee => {
+        return coffee.id === id ? { id, amount: coffee.amount - 1 } : coffee;
+      })
+    );
+  }
+
+  function increaseOneProduct (id: string, amount: number) {
+    setCoffeesList(
+      coffeesList.map(coffee => {
+        return coffee.id === id ? { id, amount: coffee.amount + amount } : coffee;
+      })
+    );
+  }
   
   function addProduct(id: string, amount: number) {
     
@@ -49,11 +67,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
     });
   
     if (coffeeAlreadOnTheList) {
-      setCoffeesList(
-        coffeesList.map(coffee => {
-          return coffee.id === id ? { id, amount: coffee.amount + amount } : coffee;
-        })
-      )
+      increaseOneProduct(id, amount);
       
     } else {
       
@@ -73,7 +87,16 @@ export function CartContextProvider({ children }: CartProviderProps) {
 
   return (
     <CartContext.Provider
-      value={{addNewPurchase, addProduct, removeProduct, clearProducts, coffeesList, purchase}}
+      value={{
+        addNewPurchase, 
+        addProduct, 
+        removeProduct, 
+        clearProducts, 
+        increaseOneProduct, 
+        decreaseOneProduct, 
+        coffeesList, 
+        purchase
+      }}
     >
       {children}
     </CartContext.Provider>

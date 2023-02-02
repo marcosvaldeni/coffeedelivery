@@ -26,7 +26,7 @@ import {
 import { useForm } from "react-hook-form";
 import { api } from '../../service/api';
 import { Total } from '../../components/Total';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 
 import { IAddress } from '../../models/Address';
@@ -47,7 +47,7 @@ const PurchaseFormDataSchema = zod.object({
   city: zod.string().min(2, 'Informe Cidade'),
   district: zod.string().min(2, 'Informe o Bairro'),
   uf: zod.string().min(2, 'Informe o Estado'),
-  cep: zod.string().min(9, 'Informe o Estado'),
+  cep: zod.string().regex(/^\d+$/).min(5, 'Informe o Estado'),
   number: zod.string().min(1, 'Informe o Numero'),
   pay: zod.string(),
   complement: zod.string(),
@@ -56,6 +56,7 @@ const PurchaseFormDataSchema = zod.object({
 type PurchaseFormData = zod.infer<typeof PurchaseFormDataSchema>
 
 export function Checkout() {
+  const [cepStatus, setCepStatus] = useState<boolean>(false);
   const { register, handleSubmit, watch, setValue, formState: {errors} } = useForm<PurchaseFormData>({
     resolver: zodResolver(PurchaseFormDataSchema),
     defaultValues: {
@@ -69,9 +70,9 @@ export function Checkout() {
       cep: ''
     }
   });
-  const { coffeesList, addNewPurchase, clearProducts } = useContext(CartContext);
+  const { coffeesList, addNewPurchase, clearProducts} = useContext(CartContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleFormSubmit({ 
     street, 
@@ -107,16 +108,20 @@ export function Checkout() {
   async function handleCepOnBlur() {
     const cep = watch('cep');
 
-    if (cep.length >= 8) {
-      const formatedCep = `${cep.replace(/[^0-9]/g, '').slice(0, 5)}-${cep.replace(/[^0-9]/g, '').slice(-3)}`;
-      console.log(formatedCep);
+    try {
+      
+      if (cep) {
+        const { logradouro, localidade, bairro, uf } = await (await api.get(`${cep.replace(/[\D]/g, '')}/json`)).data;
+        setCepStatus(false);
+        
+        setValue('street', logradouro);
+        setValue('uf', uf);
+        setValue('district', bairro);
+        setValue('city', localidade);
+      } 
+    } catch (err) {
 
-      const { address, city, district, state } = await (await api.get(`${formatedCep}.json`)).data;
-
-      setValue('street', address);
-      setValue('uf', state);
-      setValue('district', district);
-      setValue('city', city);
+      setCepStatus(true)
     }
   }
 
@@ -138,7 +143,7 @@ export function Checkout() {
 
                 <FieldsContainer>
                   <FieldInput id="cep"
-                  err={!!errors?.cep}
+                  err={cepStatus}
                   {...register('cep', {
                     onBlur: () => handleCepOnBlur()
                   })} 

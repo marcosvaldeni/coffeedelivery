@@ -29,6 +29,7 @@ export function Total() {
                 id={coffee.id}
                 img={foundCoffee!.img}
                 name={foundCoffee!.name}
+                amount={coffee.amount}
               />
             );
           })
