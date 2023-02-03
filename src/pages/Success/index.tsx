@@ -23,7 +23,7 @@ export function Success() {
   const navigate = useNavigate()
 
   if(purchase) {
-    navigate('/');
+    navigate('/');  
   }
 
   return (
