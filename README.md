@@ -31,7 +31,7 @@ This project was requered by the Ignite Bootcamp program from [Rocketseat](https
 * 📋 React Hook Form
 
 # :handbag: Layout
-The Coffee Delivery layout was based on an exercise proposed by the [Rocketseat](https://www.rocketseat.com.br/) on the Ignite Bootcamp. You can check the layout here: [Figma project](https://www.figma.com/file/0n0zDN7zbzhRbaEO74Xesx/ToDo-List/duplicate).
+The Coffee Delivery layout was based on an exercise proposed by the [Rocketseat](https://www.rocketseat.com.br/) on the Ignite Bootcamp. You can check the layout here: [Figma project](https://www.figma.com/file/5yT9ZzZmRQRS4yivGGB3pl/Coffee-Delivery/duplicate).
 
 # :construction_worker: Installation
 
