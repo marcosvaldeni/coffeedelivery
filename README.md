@@ -18,7 +18,7 @@
 * [License](#closed_book-license)
 
 # :memo: Description
-This project was requered by the Ignite Bootcamp program from [Rocketseat](https://www.rocketseat.com.br/), it consists of a shopping cart build with React.
+This project is a shopping cart built using React as part of the Ignite Bootcamp program from [Rocketseat](https://www.rocketseat.com.br/). The shopping cart is designed to provide a seamless and intuitive user experience, with features such as adding and removing items from the cart, updating the cart total, and viewing detailed product information. The project utilizes technologies such as TypeScript, Vite, and Styled Components to create a fast, responsive, and visually appealing shopping cart. With its focus on modern front-end development techniques and best practices, this project is an excellent showcase of React's capabilities and the skills of the developer.
 
 # :rocket: Made With
 
@@ -78,4 +78,4 @@ Check out the [contributing](https://github.com/marcosvaldeni/coffeedelivery/blo
 Released in 2023.
 This project is under the [MIT license](https://github.com/marcosvaldeni/coffeedelivery/blob/master/LICENSE).
 
-Made with love by [Marcos Lucas](https://github.com/marcosvaldeni) 💚🚀
+Made with love by [Marcos Lucas](https://marcosvaldeni.dev/) 💚🚀
